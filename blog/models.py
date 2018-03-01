@@ -6,14 +6,26 @@ from django.contrib.auth.models import User
 
 #分类表:分类名
 class Category(models.Model):
+
+    """该构造器方法用于将数据内容在取数据的过程中返回显示出来"""
+    def __str__(self):
+        return self.name
+
     name = models.CharField(max_length=100, unique=True)
 
 #标签表：标签名
 class Tags(models.Model):
+
+    def __str__(self):
+        return self.name
+
     name = models.CharField(max_length=100)
 
 #文章表：标题、正文、创建时间、更改时间、摘要、分类（FK）、标签（FK）、作者（FK）
 class Post(models.Model):
+
+    def __str__(self):
+        return self.title
     """文章标题"""
     title = models.CharField(max_length=70)
 
@@ -21,7 +33,7 @@ class Post(models.Model):
     body = models.TextField()
 
     #创建时间和修改时间
-    create_time = models.DateTimeField()
+    created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
 
     #文章摘要：可以没有摘要，指定CharField的 blank=True 参数后可以允许空值
