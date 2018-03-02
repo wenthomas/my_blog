@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+#step1:注册blog应用
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,10 +53,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'my_blog.urls'
 
+#Base_DIR记录的是工程根目录路径，用os.path.join把根目录和templates连接起来，从而使django可以正常调用模板
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
+
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -75,6 +78,7 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+#step3:选择数据库类型
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -105,6 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
+#step2:更改时区语言
 #把英文改为中文
 LANGUAGE_CODE = 'zh-Hans'
 #把国际时区改为中国时区

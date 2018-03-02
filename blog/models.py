@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-
+#step4:models.py配置数据库
+#step5:搭建数据库并迁移数据库完成python到数据库语言的转化，实现数据库修改
 #分类表:分类名
 class Category(models.Model):
 
