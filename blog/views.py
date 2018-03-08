@@ -1,6 +1,8 @@
-from django.shortcuts import render
+import markdown
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
+
 
 # Create your views here.
 
@@ -17,3 +19,15 @@ def index(request):
     #    'title':'我的博客首页',
     #   'welcome':'欢迎访问我的博客首页！'
     #接到http请求时寻找'blog/index.html'模板文件，并且通过context参数传入相应的变量
+
+def detail(request, pk):
+    post = get_object_or_404(Post, pk = pk) #此处的pk等价于文章id
+
+    post.body = markdown.markdown(post.body,
+                                  extensions=[
+                                      'markdown.extensions.extra',
+                                      'markdown.extensions.codehilite',
+                                      'markdown.extensions.toc',
+                                  ]
+                                  )
+    return render(request, 'blog/detail.html',context={'post':post})

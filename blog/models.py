@@ -1,6 +1,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 # Create your models here.
 #step4:models.py配置数据库
@@ -28,6 +30,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     """文章标题"""
+
+    #自定义get_absolute_url方法，并从django.urls中导入reverse函数
+    def get_absolute_url(self):
+        return reverse('blog:detail',kwargs={'pk':self.pk}) #reverse函数返回的是blog应用下name=detail的url
+
     title = models.CharField(max_length=70)
 
     #文章正文：Textfield，常用于长文本
