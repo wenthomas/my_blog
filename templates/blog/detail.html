@@ -14,7 +14,8 @@
                         </div>
                     </header>
                     <div class="entry-content clearfix">
-                        {{ post.body }}
+                        {{ post.body|safe }}
+                        <!-- 加入|safe标签作为模板过滤器告诉Django,markdown的文本是安全的，可正常转为html语言。他可看做为一种函数，作用于模板变量进行渲染处理。 -->
                     </div>
     </article>
     <section class="comment-area" >
