@@ -35,6 +35,12 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail',kwargs={'pk':self.pk}) #reverse函数返回的是blog应用下name=detail的url
 
+    #在models.Model的子类里定义一个Meta的内部类，该类通过指定一些属性来规定这个类该有的一些属性
+    #在这里我们规定了ordering排序方式，首先按照创建时间排序，次要按照标题排序
+    '''class Meta:
+        ordering = ['-created_time', 'title']
+        '''
+
     title = models.CharField(max_length=70)
 
     #文章正文：Textfield，常用于长文本

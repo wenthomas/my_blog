@@ -2,6 +2,7 @@ import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post, Category
+from comments.forms import CommentForm
 
 
 # Create your views here.
@@ -10,6 +11,8 @@ from .models import Post, Category
 #step8:编写模板文件返回用户正确的页面
 def index(request):
     post_list = Post.objects.all().order_by('-created_time')
+
+
     return render(request, 'blog/index.html', context={
         'title':'托马斯的个人小站',
         'post_list':post_list
@@ -30,7 +33,18 @@ def detail(request, pk):
                                       'markdown.extensions.toc',
                                   ]
                                   )
-    return render(request, 'blog/detail.html',context={'post':post})
+
+    form = CommentForm()
+
+    #获取这篇post下的全部评论
+    comment_list = post.comment_set.all()
+
+    #将文章、表单、以及文章下的评论列表作为模板变量传递给detail.html
+    context = {'post':post,
+               'form':form,
+               'comment_list':comment_list
+               }
+    return render(request, 'blog/detail.html',context=context)
 
 #归档页面详情
 def archives(request, year, month):

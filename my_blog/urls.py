@@ -20,5 +20,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('blog.urls')), #拼接到blog文件夹下的urls.py文件中的url，此处匹配的r''为空字符串开始并结尾
+    url(r'', include('comments.urls')), #拼接到comments文件夹下的urls.py文件中的url
 
 ]
