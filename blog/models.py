@@ -61,3 +61,10 @@ class Post(models.Model):
 
     #文章作者：User表是从django.contrib.auth.models导入的，为内置应用，专门处理网站用户的注册、登录等流程，User是Django为我们写好的用户模型
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    #Views字段记录阅读量
+    views = models.PositiveIntegerField(default=0)
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
