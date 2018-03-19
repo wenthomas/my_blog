@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_w(tl*cvf_h=4ta%p28$0-ry4&0=u48(+c_%oplc*4!cza1s(a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#安全起见，在生产环境需要关闭DEBUG选项，以及设置ALLOWED_HOSTS允许访问的域名
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost','www.bboythomas.club']
 
 
 # Application definition
@@ -127,3 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT指明了静态文件的收集目录
