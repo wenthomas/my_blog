@@ -1,0 +1,1 @@
+#该文件使blog/templatetags文件夹成为一个python包
